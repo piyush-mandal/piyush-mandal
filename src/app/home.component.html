@@ -7,14 +7,14 @@
       <h2>Selected Work</h2>
       <div class="project-grid">
         @for (project of projects; track project.slug) {
-          <article class="project-card">
+          <a class="project-card" [routerLink]="['/projects', project.slug]">
             <div class="thumbnail-placeholder">Add Thumbnail</div>
             <div class="project-content">
               <p class="project-category">{{ project.category }}</p>
               <h3>{{ project.title }}</h3>
-              <a class="project-link" [routerLink]="['/projects', project.slug]">Watch Project →</a>
+              <span class="project-link">Watch Project →</span>
             </div>
-          </article>
+          </a>
         }
       </div>
     </div>

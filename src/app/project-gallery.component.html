@@ -7,10 +7,14 @@
       <h1>{{ selectedProject.title }}</h1>
       <p class="lead">Video collection with adaptable tiles based on each video aspect ratio.</p>
 
-      <section class="masonry-grid">
+      <section class="adaptive-grid">
         @for (video of selectedProject.videos; track video.fileName) {
-          <article class="masonry-tile">
-            <video controls preload="metadata" [src]="getVideoPath(selectedProject, video)"></video>
+          <article class="adaptive-tile" [class]="'adaptive-tile ' + getTileClass(video)">
+            <video
+              controls
+              preload="metadata"
+              [src]="getVideoPath(selectedProject, video)"
+              (loadedmetadata)="updateVideoRatio(video, $event)"></video>
             <h3>{{ video.title }}</h3>
             <p>{{ video.description }}</p>
           </article>
