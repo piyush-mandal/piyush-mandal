@@ -1,0 +1,14 @@
+.gallery-page { min-height: 100vh; background: #000; color: #fff; padding: 2rem 1.5rem 4rem; }
+.container { max-width: 72rem; margin: 0 auto; }
+.back-link { color: #d4d4d8; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .2em; color: #71717a; }
+h1 { margin: .25rem 0 1rem; }
+.lead { color: #a1a1aa; margin-bottom: 1.5rem; }
+.masonry-grid { column-count: 1; column-gap: 1rem; }
+.masonry-tile { break-inside: avoid; margin-bottom: 1rem; background: #18181b; border: 1px solid #27272a; border-radius: .9rem; padding: .75rem; }
+.masonry-tile video { width: 100%; height: auto; border-radius: .6rem; display: block; }
+.masonry-tile h3 { margin: .75rem 0 .35rem; font-size: 1rem; }
+.masonry-tile p { margin: 0; color: #a1a1aa; font-size: .9rem; line-height: 1.4; }
+
+@media (min-width: 700px) { .masonry-grid { column-count: 2; } }
+@media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
