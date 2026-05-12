@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+
+interface Project {
+  title: string;
+  category: string;
+}
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('piyush-mandal');
+  readonly projects: Project[] = [
+    { title: 'Motion Design Showcase', category: 'Motion Graphics' },
+    { title: '3D Environment Visual', category: '3D Artwork' }
+  ];
 }
