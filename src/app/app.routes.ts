@@ -5,5 +5,6 @@ import { ProjectGalleryComponent } from './project-gallery.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'projects/:slug', component: ProjectGalleryComponent },
+  { path: 'projects/:slug/:videoFile', component: ProjectGalleryComponent },
   { path: '**', redirectTo: '' }
 ];
