@@ -34,11 +34,12 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 1.5re
 
 .work { background: #09090b; }
 .project-grid { margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.project-card { background: #18181b; border: 1px solid #27272a; border-radius: 1.5rem; overflow: hidden; }
+.project-card { background: #18181b; border: 1px solid #27272a; border-radius: 1.5rem; overflow: hidden; text-decoration: none; color: inherit; transition: border-color .2s ease, transform .2s ease; display: block; }
+.project-card:hover { border-color: #52525b; transform: translateY(-2px); }
 .thumbnail-placeholder { height: 16rem; display: grid; place-items: center; color: #52525b; text-transform: uppercase; letter-spacing: 0.2em; background: linear-gradient(135deg, #27272a, #000); }
 .project-content { padding: 1.5rem; }
 .project-category { color: #71717a; margin: 0 0 0.5rem; font-size: 0.875rem; }
-.project-link { background: none; border: none; color: #d4d4d8; padding: 0; cursor: pointer; }
+.project-link { color: #d4d4d8; }
 
 .video-tiles {
   display: grid;
