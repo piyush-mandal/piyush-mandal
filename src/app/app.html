@@ -57,7 +57,20 @@
             <div class="project-content">
               <p class="project-category">{{ project.category }}</p>
               <h3>{{ project.title }}</h3>
-              <button type="button" class="project-link">Watch Project →</button>
+              <button type="button" class="project-link" (click)="toggleProject(project.title)">
+                {{ activeProjectTitle === project.title ? 'Hide Projects ↑' : 'Watch Project →' }}
+              </button>
+
+              @if (activeProjectTitle === project.title) {
+                <div class="video-tiles">
+                  @for (video of project.videos; track video) {
+                    <figure class="video-tile">
+                      <video controls preload="metadata" [src]="getVideoPath(project, video)"></video>
+                      <figcaption>{{ video }}</figcaption>
+                    </figure>
+                  }
+                </div>
+              }
             </div>
           </article>
         }
