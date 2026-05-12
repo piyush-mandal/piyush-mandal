@@ -39,3 +39,6 @@ h1 { margin: .25rem 0 1rem; }
   .tile-standard { grid-column: span 4; }
   .tile-landscape { grid-column: span 8; }
 }
+
+.video-link { display: inline-block; margin-top: .65rem; color: #d4d4d8; text-decoration: none; }
+.video-link:hover { color: #fff; }

@@ -5,10 +5,15 @@
     @if (project(); as selectedProject) {
       <p class="eyebrow">{{ selectedProject.category }}</p>
       <h1>{{ selectedProject.title }}</h1>
+
+      @if (selectedVideoFile()) {
+        <a class="back-link" [routerLink]="['/projects', selectedProject.slug]">← Back to all videos</a>
+      }
+
       <p class="lead">Video collection with adaptable tiles based on each video aspect ratio.</p>
 
       <section class="adaptive-grid">
-        @for (video of selectedProject.videos; track video.fileName) {
+        @for (video of visibleVideos(); track video.fileName) {
           <article class="adaptive-tile" [class]="'adaptive-tile ' + getTileClass(video)">
             <video
               controls
@@ -17,6 +22,9 @@
               (loadedmetadata)="updateVideoRatio(video, $event)"></video>
             <h3>{{ video.title }}</h3>
             <p>{{ video.description }}</p>
+            @if (!selectedVideoFile()) {
+              <a class="video-link" [routerLink]="['/projects', selectedProject.slug, video.fileName]">Open Video Page →</a>
+            }
           </article>
         }
       </section>

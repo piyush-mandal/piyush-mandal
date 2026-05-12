@@ -16,6 +16,23 @@ export class ProjectGalleryComponent {
     return PROJECTS.find((item) => item.slug === slug);
   });
 
+  readonly selectedVideoFile = computed(() => this.route.snapshot.paramMap.get('videoFile'));
+
+  readonly visibleVideos = computed<VideoItem[]>(() => {
+    const selectedProject = this.project();
+    if (!selectedProject) {
+      return [];
+    }
+
+    const selectedVideoFile = this.selectedVideoFile();
+    if (!selectedVideoFile) {
+      return selectedProject.videos;
+    }
+
+    const decodedFile = decodeURIComponent(selectedVideoFile);
+    return selectedProject.videos.filter((video) => video.fileName === decodedFile);
+  });
+
   private readonly ratios = new Map<string, number>();
 
   getVideoPath(project: Project, video: VideoItem): string {
