@@ -1,43 +1,55 @@
 .gallery-page { min-height: 100vh; background: #000; color: #fff; padding: 2rem 1.5rem 4rem; }
 .container { max-width: 72rem; margin: 0 auto; }
 .back-link { color: #d4d4d8; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+.back-link:hover { color: #fff; }
 .eyebrow { text-transform: uppercase; letter-spacing: .2em; color: #71717a; }
-h1 { margin: .25rem 0 1rem; }
-.lead { color: #a1a1aa; margin-bottom: 1.5rem; }
+h1 { margin: .25rem 0 1rem; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; }
+.lead { color: #a1a1aa; margin-bottom: 1.5rem; line-height: 1.6; }
 
 .adaptive-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-rows: 12rem;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
 }
 
 .adaptive-tile {
-  grid-column: span 12;
   background: #18181b;
   border: 1px solid #27272a;
   border-radius: .9rem;
   padding: .75rem;
 }
 
-.adaptive-tile video { width: 100%; height: auto; max-height: 26rem; border-radius: .6rem; display: block; background: #000; }
-.adaptive-tile h3 { margin: .75rem 0 .35rem; font-size: 1rem; }
-.adaptive-tile p { margin: 0; color: #a1a1aa; font-size: .9rem; line-height: 1.4; }
-
-.tile-standard { grid-row: span 2; }
-.tile-portrait { grid-row: span 3; }
-.tile-landscape { grid-row: span 2; }
-
-@media (min-width: 700px) {
-  .adaptive-tile { grid-column: span 6; }
-  .tile-landscape { grid-column: span 12; }
+.video-frame {
+  width: 100%;
+  aspect-ratio: var(--video-ratio, 16 / 9);
+  max-height: 72vh;
+  overflow: hidden;
+  border-radius: .6rem;
+  background: #000;
 }
 
-@media (min-width: 1024px) {
-  .adaptive-tile { grid-column: span 4; }
-  .tile-portrait { grid-column: span 4; }
-  .tile-standard { grid-column: span 4; }
-  .tile-landscape { grid-column: span 8; }
+.video-frame .video-js {
+  width: 100%;
+  height: 100%;
+  border-radius: .6rem;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-frame .vjs-tech {
+  object-fit: contain;
+}
+
+.adaptive-tile h3 { margin: .75rem 0 .35rem; font-size: 1rem; }
+.adaptive-tile p { margin: 0; color: #a1a1aa; font-size: .9rem; line-height: 1.4; }
+.tile-portrait .video-frame { max-width: min(100%, 28rem); margin-inline: auto; }
+
+@media (min-width: 760px) {
+  .tile-landscape { grid-column: span 2; }
+  .single-video .adaptive-tile { grid-column: 1 / -1; }
+  .single-video .video-frame { max-width: min(100%, 64rem); margin-inline: auto; }
+  .single-video .tile-portrait .video-frame { max-width: min(100%, 34rem); }
 }
 
 .video-link { display: inline-block; margin-top: .65rem; color: #d4d4d8; text-decoration: none; }

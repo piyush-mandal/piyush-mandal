@@ -10,16 +10,27 @@
         <a class="back-link" [routerLink]="['/projects', selectedProject.slug]">← Back to all videos</a>
       }
 
-      <p class="lead">Video collection with adaptable tiles based on each video aspect ratio.</p>
+      <p class="lead">A focused collection of edits, motion studies, and cinematic visual tests.</p>
 
-      <section class="adaptive-grid">
+      <section class="adaptive-grid" [class.single-video]="selectedVideoFile()">
         @for (video of visibleVideos(); track video.fileName) {
-          <article class="adaptive-tile" [class]="'adaptive-tile ' + getTileClass(video)">
-            <video
-              controls
-              preload="metadata"
-              [src]="getVideoPath(selectedProject, video)"
-              (loadedmetadata)="updateVideoRatio(video, $event)"></video>
+          <article
+            class="adaptive-tile"
+            [class.tile-portrait]="getTileClass(video) === 'tile-portrait'"
+            [class.tile-landscape]="getTileClass(video) === 'tile-landscape'"
+            [class.tile-standard]="getTileClass(video) === 'tile-standard'"
+            [style.--video-ratio]="getVideoRatio(video)">
+            <div class="video-frame">
+              <video
+                #videoPlayer
+                class="video-js vjs-big-play-centered"
+                controls
+                preload="metadata"
+                playsinline
+                (loadedmetadata)="updateVideoRatio(video, $event)">
+                <source [src]="getVideoPath(selectedProject, video)" [type]="getVideoType(video)" />
+              </video>
+            </div>
             <h3>{{ video.title }}</h3>
             <p>{{ video.description }}</p>
             @if (!selectedVideoFile()) {

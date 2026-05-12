@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
-import { ProjectGalleryComponent } from './project-gallery.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'projects/:slug', component: ProjectGalleryComponent },
-  { path: 'projects/:slug/:videoFile', component: ProjectGalleryComponent },
+  { path: '', loadComponent: () => import('./home.component').then((module) => module.HomeComponent) },
+  {
+    path: 'projects/:slug',
+    loadComponent: () => import('./project-gallery.component').then((module) => module.ProjectGalleryComponent)
+  },
+  {
+    path: 'projects/:slug/:videoFile',
+    loadComponent: () => import('./project-gallery.component').then((module) => module.ProjectGalleryComponent)
+  },
   { path: '**', redirectTo: '' }
 ];
