@@ -1,18 +1,10 @@
 import { Component } from '@angular/core';
-
-interface Project {
-  title: string;
-  category: string;
-}
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  readonly projects: Project[] = [
-    { title: 'Motion Design Showcase', category: 'Motion Graphics' },
-    { title: '3D Environment Visual', category: '3D Artwork' }
-  ];
-}
+export class App {}
