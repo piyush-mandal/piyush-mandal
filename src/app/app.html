@@ -52,18 +52,47 @@
       <h2>Selected Work</h2>
       <div class="project-grid">
         @for (project of projects; track project.title) {
-          <article class="project-card">
+          <article class="project-card" role="button" tabindex="0" (click)="openProject(project)" (keydown.enter)="openProject(project)" (keydown.space)="openProject(project)">
             <div class="thumbnail-placeholder">Add Thumbnail</div>
             <div class="project-content">
               <p class="project-category">{{ project.category }}</p>
               <h3>{{ project.title }}</h3>
-              <button type="button" class="project-link">Watch Project →</button>
+              <button type="button" class="project-link" (click)="$event.stopPropagation(); openProject(project)">Watch Project →</button>
             </div>
           </article>
         }
       </div>
     </div>
   </section>
+
+  @if (selectedProject; as project) {
+    <section class="video-overlay" (click)="closeProject()">
+      <div class="video-modal" role="dialog" aria-modal="true" [attr.aria-label]="project.title" (click)="$event.stopPropagation()">
+        <div class="video-modal-header">
+          <div>
+            <p class="project-category">{{ project.category }}</p>
+            <h3>{{ project.title }}</h3>
+          </div>
+          <button type="button" class="close-button" (click)="closeProject()">Close ✕</button>
+        </div>
+
+        <div class="video-grid">
+          @for (video of project.videos; track trackVideo($index, video)) {
+            <video
+              class="project-video"
+              [src]="getVideoPath(project, video)"
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          }
+        </div>
+      </div>
+    </section>
+  }
 
   <section class="vision section center">
     <p class="eyebrow">Vision</p>

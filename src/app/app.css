@@ -34,11 +34,70 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 1.5re
 
 .work { background: #09090b; }
 .project-grid { margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.project-card { background: #18181b; border: 1px solid #27272a; border-radius: 1.5rem; overflow: hidden; }
+.project-card {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.project-card:hover,
+.project-card:focus-visible {
+  border-color: #52525b;
+  transform: translateY(-2px);
+  outline: none;
+}
 .thumbnail-placeholder { height: 16rem; display: grid; place-items: center; color: #52525b; text-transform: uppercase; letter-spacing: 0.2em; background: linear-gradient(135deg, #27272a, #000); }
 .project-content { padding: 1.5rem; }
 .project-category { color: #71717a; margin: 0 0 0.5rem; font-size: 0.875rem; }
-.project-link { background: none; border: none; color: #d4d4d8; padding: 0; cursor: pointer; }
+.project-link { background: none; border: none; color: #d4d4d8; padding: 0; cursor: pointer; font-size: 1.1rem; }
+
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.86);
+  padding: 1.5rem;
+  display: grid;
+  place-items: center;
+}
+.video-modal {
+  width: min(1100px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: #111114;
+  border: 1px solid #27272a;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.video-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.close-button {
+  background: #27272a;
+  color: #fff;
+  border: 1px solid #3f3f46;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+.project-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  background: #000;
+}
 
 .socials { margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; }
 .socials a { color: #71717a; text-decoration: none; }
